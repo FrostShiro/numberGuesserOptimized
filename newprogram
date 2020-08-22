@@ -1,0 +1,52 @@
+using System;
+
+namespace numberGuesser
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double guess = 50;
+            double correction = 25;
+            Console.WriteLine($"Think of a number between 1-100, \nI will guess it in 10 tries, or else you win!");
+            int i = 0;
+            int tries = 0;
+            while (tries <= 10)
+            {
+                while (i < 1)
+                {
+                    Console.WriteLine($"is your number {Math.Round(guess)}? yes/higher/lower");
+                    string outcomeTwo = Console.ReadLine();
+                    outcomeTwo.ToLower();
+
+                    switch (outcomeTwo)
+                    {
+                        case "higher":
+                            guess = guess + correction;
+                            correction = Math.Round(correction / 1.25);
+                            break;
+                        case "lower":
+                            guess = guess - correction;
+                            correction = correction / 1.25;
+                            break;
+                        case "yes":
+                            Console.WriteLine("Yay i got it!");
+                            Console.WriteLine($"It took me {tries} tries.");
+                            i = 1;
+                            break;
+                        default:
+                            Console.WriteLine("please answer with yes/higher/lower.");
+                            break;
+                    }
+                    tries += 1;
+
+                }
+                if (tries >= 10)
+                {
+                    Console.WriteLine("Damn! you win this time.");
+                    i = 1;
+                }
+            }
+        }
+    }
+}
